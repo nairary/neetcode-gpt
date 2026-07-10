@@ -8,18 +8,15 @@ class Solution:
         # w: 1D weight array (same length as x)
         # b: scalar bias
         # activation: "sigmoid" or "relu"
-        # rounds to 5 decimals
-
+        #
         # Pre-activation: z = dot(x, w) + b
+        # Sigmoid: σ(z) = 1 / (1 + exp(-z))
+        # ReLU: max(0, z)
+        # return round(your_answer, 5)
         z = np.dot(x, w) + b
-
-        match activation:
-            case "sigmoid":
-                # Sigmoid: σ(z) = 1 / (1 + exp(-z))
-                return round(1 / (1 + np.exp(-z)), 5)
-            case "relu":
-                # ReLU: max(0, z)
-                return np.round(max(0.0, z), 5)
-            case _:
-                print("invalid activation function")
-                pass
+        sig = 1 / (1 + np.exp(-z))
+        relu = max(0.0, z)
+        if activation == "relu":
+            return np.round(relu, 5)
+        elif activation == "sigmoid":
+            return np.round(sig, 5)
